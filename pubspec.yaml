@@ -30,6 +30,8 @@ dependencies:
   equatable: ^2.0.3
   reorderables: ^0.4.1
 
+  responsive_framework: ^0.1.4
+
   # 工具
   dio_log : ^2.0.0 # app内抓包工具
   logger: ^1.0.0 # 日志库
