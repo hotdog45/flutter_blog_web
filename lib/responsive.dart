@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 final double mobileW = 480;
 final double tabletW = 800;
 final double desktopW = 1200;
-final double bigPCW = 2600;
 
 class Responsive extends StatelessWidget {
   final Widget mobile;

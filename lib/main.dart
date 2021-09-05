@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               ResponsiveBreakpoint.resize(mobileW, name: MOBILE),
               ResponsiveBreakpoint.autoScale(tabletW, name: TABLET),
               ResponsiveBreakpoint.resize(desktopW, name: DESKTOP),
-              ResponsiveBreakpoint.autoScale(bigPCW, name: '4K'),
+              // ResponsiveBreakpoint.autoScale(bigPCW, name: '4K'),
             ],
             background: Container(color: Color(0xFFF5F5F5)));
 

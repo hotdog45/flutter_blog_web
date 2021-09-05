@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/widget/my_image.dart';
 import 'package:my_blog/widget/my_super_widget.dart';
@@ -18,63 +19,53 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
     return Scaffold(
       body: Center(
         child: Container(
-          width: 1600,
+          width: 1200,
           child: Row(
             children: [
-
               if (Responsive.isDesktop(context))
                 Expanded(
                   flex: 2,
                   child: MySuperWidget(
                     bgColor: Colors.purple,
-                    height: 1000,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (_, i) {
+                        return MySuperWidget(
+                          text: "$i. 这是标题水电费收不到你随便",
+                          margin: EdgeInsets.all(20),
+                          maxLines: 2,
+                        );
+                      },
+                      itemCount: 30,
+                      padding: EdgeInsets.only(top: 50),
+                    ),
                   ),
                 ),
               Expanded(
                 flex: 6,
-                child: ListView(
-                  children: [
-                    Container(
-                      width: 500,
-                      height: 100,
-                      color: Colors.lightBlue,
-                    ),
-                    Container(
-                      width: 600,
-                      height: 200,
-                      color: Colors.purpleAccent,
-                    ),
-                    MyImage(
-                      "",
-                      width: 600,
-                      height: 800,
-                    ),
-                    Container(
-                      width: 500,
-                      height: 300,
-                      color: Colors.lightBlue,
-                    ),
-                    MyImage(
-                      "",
-                      width: 600,
-                      height: 800,
-                    ),
-                    MyImage(
-                      "",
-                      width: 900,
-                      height: 1200,
-                    ),
-                    Container(
-                      width: 500,
-                      height: 300,
-                      color: Colors.lightBlue,
-                    ),
-                    MyImage(
-                      "",
-                      width: 600,
-                      height: 800,
-                    ),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: MarkdownBody(data: """
+                  
+我展示的是一级标题
+=================
+
+我展示的是二级标题
+-----------------
+qisBlank
+qisBlank
+wisBlanksisBlank
+xisBlank
+
+
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题 
+                  
+                  """),
                 ),
               ),
               if (!Responsive.isMobile(context))
