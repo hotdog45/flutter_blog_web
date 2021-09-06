@@ -33,6 +33,7 @@ dependencies:
 
   responsive_framework: ^0.1.4
   intl: ^0.17.0
+  html2md: ^1.2.5
 
   just_audio: ^0.9.10 #悬浮功能的MP3播放器
 

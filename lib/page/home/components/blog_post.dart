@@ -20,7 +20,7 @@ class BlogPostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(ArticleDetailsPage());
+        Get.to(ArticleDetailsPage(id: blog.id.toString()));
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: kDefaultPadding),

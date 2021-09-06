@@ -1,19 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
+import 'package:my_blog/common/models/blog_model.dart';
+import 'package:my_blog/common/net/http_manager.dart';
 import 'package:my_blog/common/widget/my_image.dart';
 import 'package:my_blog/common/widget/my_super_widget.dart';
+import 'package:html2md/html2md.dart' as html2md;
 
 import '../../responsive.dart';
 
 class ArticleDetailsPage extends StatefulWidget {
-  const ArticleDetailsPage({Key? key}) : super(key: key);
+  final String id;
+
+  const ArticleDetailsPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _ArticleDetailsPageState createState() => _ArticleDetailsPageState();
 }
 
 class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
+  late BlogModel blogModel;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState(); //article/info/
+    getArticleInfo();
+  }
+
+  //
+  getArticleInfo() async {
+    var jsonData = await httpManager
+        .netFetch("api/v1/article/info/${widget.id}", {}, method: "get");
+    if (jsonData != null && jsonData["status"] == 200) {
+      blogModel = BlogModel.fromJson(jsonData["data"]);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,27 +69,12 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
                 flex: 6,
                 child: Container(
                   padding: EdgeInsets.all(20),
-                  child: MarkdownBody(data: """
-                  
-我展示的是一级标题
-=================
-
-我展示的是二级标题
------------------
-qisBlank
-qisBlank
-wisBlanksisBlank
-xisBlank
-
-
-# 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题 
-                  
-                  """),
+                  child: ListView(children: [
+                    MarkdownBody(
+                      data: html2md.convert(blogModel.content),
+                      shrinkWrap: true,
+                    )
+                  ]),
                 ),
               ),
               if (!Responsive.isMobile(context))

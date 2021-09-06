@@ -1,5 +1,5 @@
 class Config {
-  static const PAGE_SIZE = 4;
+  static const PAGE_SIZE = 8;
   static const bool DEBUG = true;
 
   static const String ERROR_MSG = '系统错误~';
