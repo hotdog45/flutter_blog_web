@@ -19,7 +19,7 @@ class ArticleDetailsPage extends StatefulWidget {
 }
 
 class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
-  late BlogModel blogModel;
+  BlogModel? blogModel ;
 
   @override
   void initState() {
@@ -69,9 +69,9 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
                 flex: 6,
                 child: Container(
                   padding: EdgeInsets.all(20),
-                  child: ListView(children: [
+                  child:blogModel == null ? Container(): ListView(children: [
                     MarkdownBody(
-                      data: html2md.convert(blogModel.content),
+                      data: html2md.convert(blogModel!.content),
                       shrinkWrap: true,
                     )
                   ]),
