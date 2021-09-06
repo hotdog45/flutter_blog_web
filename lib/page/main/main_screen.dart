@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/controllers/MenuController.dart';
-import 'package:my_blog/screens/home/home_screen.dart';
+import 'package:my_blog/common/controllers/MenuController.dart';
+import 'package:my_blog/page/home/home_screen.dart';
 import '../../constants.dart';
 import 'components/header.dart';
 import 'components/side_menu.dart';

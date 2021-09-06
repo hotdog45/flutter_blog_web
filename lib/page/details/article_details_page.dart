@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/widget/my_image.dart';
-import 'package:my_blog/widget/my_super_widget.dart';
+import 'package:my_blog/common/widget/my_image.dart';
+import 'package:my_blog/common/widget/my_super_widget.dart';
 
 import '../../responsive.dart';
 

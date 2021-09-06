@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_blog/models/Blog.dart';
-import 'package:my_blog/screens/details/article_details_page.dart';
-import 'package:my_blog/widget/my_image.dart';
+import 'package:my_blog/common/models/Blog.dart';
+import 'package:my_blog/common/models/blog_model.dart';
+import 'package:my_blog/common/utils/date_time_utils.dart';
+import 'package:my_blog/page/details/article_details_page.dart';
+import 'package:my_blog/common/widget/my_image.dart';
 
 import '../../../constants.dart';
 import '../../../responsive.dart';
 
 class BlogPostCard extends StatelessWidget {
-  final Blog blog;
+  final BlogModel blog;
   const BlogPostCard({
     Key? key,
     required this.blog,
@@ -26,7 +28,7 @@ class BlogPostCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1.78,
-              child: MyImage(""),
+              child: MyImage(blog.img),
             ),
             Container(
               padding: EdgeInsets.all(kDefaultPadding),
@@ -43,7 +45,7 @@ class BlogPostCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Design".toUpperCase(),
+                        blog.category.name,
                         style: TextStyle(
                           color: kDarkBlackColor,
                           fontSize: 12,
@@ -52,7 +54,7 @@ class BlogPostCard extends StatelessWidget {
                       ),
                       SizedBox(width: kDefaultPadding),
                       Text(
-                        blog.date ?? "",
+                        DateTimeUtils.dateFormatByTime(blog.createdAt),
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ],
@@ -61,7 +63,7 @@ class BlogPostCard extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: kDefaultPadding),
                     child: Text(
-                      blog.title ?? "",
+                      blog.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -74,7 +76,7 @@ class BlogPostCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    blog.description ?? "",
+                    blog.desc,
                     maxLines: 4,
                     style: TextStyle(height: 1.5),
                   ),

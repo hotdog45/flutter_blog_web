@@ -2,9 +2,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog/responsive.dart';
-import 'package:my_blog/screens/main/main_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'constants.dart';
+import 'page/main/main_screen.dart';
 
 void main() {
   runApp(MyApp());
