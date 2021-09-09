@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
     getCategories();
   }
 
+  bool amIHovering = false;
+  Offset exitFrom = Offset(0, 0);
   getList() async {
     _blogListModel = await getArticleList();
     setState(() {});
@@ -64,7 +66,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: kDefaultPadding),
                 if (_categories.length > 0) CategoriesWidget(list: _categories),
                 SizedBox(height: kDefaultPadding),
-                // RecentPosts(),
+                RecentPosts(),
+                MouseRegion(
+                  onEnter: (details) => setState(() => amIHovering = true),
+                  onExit: (details) => setState(() {
+                    amIHovering = false;
+                    exitFrom = details
+                        .localPosition; // You can use details.position if you are interested in the global position of your pointer.
+                  }),
+                  child: Container(
+                    width: amIHovering ?200 :150,
+                    height: amIHovering ?200 : 150,
+                    color: amIHovering ? Colors.green :Colors.purple,
+                    child: Center(
+                      child: Text(amIHovering
+                          ? "Look mom, I'm hovering"
+                          : "I exited from: $exitFrom"),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
