@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     final botToastBuilder = BotToastInit();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false, //取消debug图标
-      title: '个人博客',
-      defaultTransition: Transition.zoom,
+      title: '----',
+      // defaultTransition: Transition.zoom,
       builder: (context, child) {
         child = botToastBuilder(context, child);
         child = ResponsiveWrapper.builder(child,

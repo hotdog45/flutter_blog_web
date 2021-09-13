@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late BlogListModel _blogListModel;
+  BlogListModel? _blogListModel;
   List _categories = [];
   @override
   void initState() {
@@ -48,14 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2,
-          child: Column(
-            children: List.generate(
-              _blogListModel.data.length,
-              (index) => BlogPostCard(blog: _blogListModel.data[index]),
-            ),
-          ),
-        ),
+            flex: 2,
+            child: _blogListModel == null
+                ? Container()
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (_, index) {
+                      return BlogPostCard(blog: _blogListModel!.data[index]);
+                    },
+                    itemCount: _blogListModel!.data.length,
+                  )),
         if (!Responsive.isMobile(context)) SizedBox(width: kDefaultPadding),
         // Sidebar
         if (!Responsive.isMobile(context))
@@ -75,9 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         .localPosition; // You can use details.position if you are interested in the global position of your pointer.
                   }),
                   child: Container(
-                    width: amIHovering ?200 :150,
-                    height: amIHovering ?200 : 150,
-                    color: amIHovering ? Colors.green :Colors.purple,
+                    width: amIHovering ? 200 : 150,
+                    height: amIHovering ? 200 : 150,
+                    color: amIHovering ? Colors.green : Colors.purple,
                     child: Center(
                       child: Text(amIHovering
                           ? "Look mom, I'm hovering"
